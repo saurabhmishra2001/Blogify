@@ -1,6 +1,6 @@
 import  {useEffect, useState} from 'react'
 import {Container, PostForm} from '../components'
-import appwriteService from "../appwrite/config/config"
+import appwriteService from "../appwrite/confif";
 import { useNavigate,  useParams } from 'react-router-dom';
 
 function EditPost() {

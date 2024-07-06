@@ -1,6 +1,5 @@
 import  {useEffect, useState} from 'react'
-import appwriteService from "../appwrite/config/config"
-
+import appwriteService from "../appwrite/confif";
 import {Container, PostCard} from '../components'
 
 function Home() {
