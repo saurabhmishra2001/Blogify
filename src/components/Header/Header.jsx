@@ -1,72 +1,73 @@
-import {Container,Logo,LogoutBtn} from '../index'
-import { Link,useNavigate } from 'react-router-dom'
+import { Logo, LogoutBtn } from '../index'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-
-function Header(){
+function Header() {
     const authStatus = useSelector((state) => state.auth.status)
-
     const navigate = useNavigate();
 
     const navItems = [
         {
-            name : 'Home',
-            slug : '/',
-            active : true
+            name: 'Home',
+            slug: '/',
+            active: true
         },
         {
-            name : 'Login',
-            slug : '/login',
-            active : !authStatus
+            name: 'Login',
+            slug: '/login',
+            active: !authStatus
         },
         {
-            name : 'Signup',
-            slug : '/signup',
-            active : !authStatus
+            name: 'Signup',
+            slug: '/signup',
+            active: !authStatus
         },
         {
-            name : "All Posts",
-            slug : "/all-posts",
-            active : authStatus
+            name: "All Posts",
+            slug: "/all-posts",
+            active: authStatus
         },
         {
-            name : "Add Post",
-            slug : '/add-post',
-            active : authStatus
+            name: "Add Post",
+            slug: '/add-post',
+            active: authStatus
         }
     ]
 
-    return(
-        <header className='py-3 shadow bg-red-400 sticky top-0 rounded-3xl z-10'>
-            <Container>
-                <nav className='flex'>
-                    <div className='mr-4'>
-                        <Link to="/">
-                            <Logo width='50px'/>
+    return (
+        <header className='sticky top-0 z-50 bg-gradient-to-r from-cyan-600 to-blue-700 shadow-lg'>
+            <div className='max-w-full'>
+                <nav className='flex items-center justify-between h-20 px-8'>
+                    <div className='flex items-center'>
+                        <Link to="/" className='transition-transform hover:scale-105 bg-white/10 p-2 rounded-lg'>
+                            <Logo width='45px'/>
                         </Link>
                     </div>
 
-                    <ul className='flex ml-auto'>
+                    <ul className='flex items-center space-x-3'>
                         {navItems.map((item) => 
-                        item.active ? (
-                            <li key={item.name}>
-
-                                <button onClick={() => navigate(item.slug)}
-                                className='inline-block px-6 py-2 duration-200 hover:bg-orange-100 rounded-full'>
-                                    {item.name}
-                                </button>
-
-                            </li>
-                        ) : null
+                            item.active ? (
+                                <li key={item.name}>
+                                    <button 
+                                        onClick={() => navigate(item.slug)}
+                                        className='px-4 py-2 text-sm font-medium text-white transition-all duration-200 
+                                        rounded-lg hover:bg-white/20 border border-transparent
+                                        hover:border-white/40 focus:outline-none focus:ring-2 
+                                        focus:ring-white/50'
+                                    >
+                                        {item.name}
+                                    </button>
+                                </li>
+                            ) : null
                         )}
                         {authStatus && (
-                            <li>
-                                <LogoutBtn/>
+                            <li className='ml-2'>
+                                <LogoutBtn />
                             </li>
                         )}
                     </ul>
                 </nav>
-            </Container>
+            </div>
         </header>
     )
 }
